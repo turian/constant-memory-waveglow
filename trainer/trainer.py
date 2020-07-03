@@ -4,10 +4,6 @@ from torchvision.utils import make_grid
 from base import BaseTrainer
 import torch.nn as nn
 
-import tensorflow as tf
-import datetime
-import sys
-
 class Trainer(BaseTrainer):
     """
     Trainer class
@@ -27,9 +23,6 @@ class Trainer(BaseTrainer):
         """
         Full training logic
         """
-        current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-        train_log_dir = 'logs/waveglow/' + current_time + '/train'
-        train_summary_writer = tf.summary.create_file_writer(train_log_dir)
         for step, data in enumerate(self.data_loader):
             step += 1 + self.start_step
             self.model.train()
@@ -55,8 +48,6 @@ class Trainer(BaseTrainer):
                     self.steps,
                     100.0 * step / self.steps,
                     loss.item()))
-                with train_summary_writer.as_default():
-                    tf.summary.scalar('loss', loss.item().cpu(), step=step)
                 #self.writer.add_image('input', make_grid(data.cpu(), nrow=8, normalize=True))
                 mel_spec = mels[0].cpu()
                 mel_spec -= mel_spec.min()

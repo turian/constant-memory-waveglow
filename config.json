@@ -60,7 +60,7 @@
     "verbosity": 2
   },
   "visualization": {
-    "tensorboardX": false,
+    "tensorboardX": true,
     "log_dir": "saved/runs"
   }
 }
