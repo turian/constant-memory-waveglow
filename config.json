@@ -24,7 +24,7 @@
   "data_loader": {
     "type": "RandomWaveFileLoader",
     "args": {
-      "data_dir": "data-val",
+      "data_dir": "train-small",
       "batch_size": 32,
       "num_workers": 2,
       "segment": 16000
